@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人網站</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            font-family: 'Lora', serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        .navbar {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
+            backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
+        }
+        .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+        }
+        .btn {
+            background: linear-gradient(to right, #3b82f6, #1d4ed8);
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.5);
+        }
+        .nav-link {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(to right, #3b82f6, #ffffff);
+            transition: width 0.4s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        #particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <!-- 粒子背景 -->
+    <canvas id="particles"></canvas>
+
+    <!-- 導航欄 -->
+    <nav class="navbar fixed top-0 w-full z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <span class="text-2xl font-bold">我的網站</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="#home" class="nav-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"><i class="fas fa-home"></i> 首頁</a>
+                    <a href="#about" class="nav-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"><i class="fas fa-user"></i> 關於</a>
+                    <a href="#portfolio" class="nav-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"><i class="fas fa-briefcase"></i> 作品</a>
+                    <a href="#contact" class="nav-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"><i class="fas fa-envelope"></i> 聯繫</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首頁 -->
+    <section id="home" class="section">
+        <div class="text-center">
+            <h1 class="text-6xl font-bold mb-6 opacity-0" id="home-title">歡迎來到我的網站</h1>
+            <p class="text-xl mb-8 opacity-0" id="home-subtitle">我是[你的名字]，一位[你的職業/興趣]</p>
+            <a href="#contact" class="btn inline-block text-white px-8 py-4 rounded-full opacity-0 text-lg" id="home-button"><i class="fas fa-paper-plane mr-2"></i>聯繫我</a>
+        </div>
+    </section>
+
+    <!-- 關於 -->
+    <section id="about" class="section">
+        <div class="card max-w-3xl text-center">
+            <h2 class="text-4xl font-bold mb-6"><i class="fas fa-user-circle mr-2"></i>關於我</h2>
+            <p class="mb-6 text-lg">我是一位充滿熱情的[職業/角色]，專注於[你的專長或興趣]。我喜歡[你的愛好或價值觀]，並致力於[你的目標或使命]。</p>
+            <p class="text-lg">在這裡，你可以了解更多關於我的故事和我的工作。</p>
+        </div>
+    </section>
+
+    <!-- 作品 -->
+    <section id="portfolio" class="section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-12"><i class="fas fa-briefcase mr-2"></i>我的作品</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card">
+                    <h3 class="text-2xl font-semibold mb-4"><i class="fas fa-project-diagram mr-2"></i>作品 1</h3>
+                    <p class="text-lg">簡短描述你的第一個作品，介紹其特色或意義。</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-2xl font-semibold mb-4"><i class="fas fa-code mr-2"></i>作品 2</h3>
+                    <p class="text-lg">簡短描述你的第二個作品，介紹其特色或意義。</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-2xl font-semibold mb-4"><i class="fas fa-paint-brush mr-2"></i>作品 3</h3>
+                    <p class="text-lg">簡短描述你的第三個作品，介紹其特色或意義。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 聯繫 -->
+    <section id="contact" class="section">
+        <div class="card max-w-lg text-center">
+            <h2 class="text-4xl font-bold mb-6"><i class="fas fa-envelope-open-text mr-2"></i>聯繫我</h2>
+            <p class="mb-6 text-lg">有任何問題或合作機會？請通過以下方式聯繫我！</p>
+            <p class="mb-6 text-lg"><i class="fas fa-at mr-2"></i>電子郵件: [你的郵箱]</p>
+            <a href="mailto:[你的郵箱]" class="btn inline-block text-white px-8 py-4 rounded-full text-lg"><i class="fas fa-paper-plane mr-2"></i>發送郵件</a>
+        </div>
+    </section>
+
+    <!-- 頁腳 -->
+    <footer class="bg-black text-center py-8">
+        <p class="text-lg">© 2025 [你的名字]. 保留所有權利。</p>
+    </footer>
+
+    <script>
+        // 粒子背景
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const particleCount = 100;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // GSAP 開場動畫
+        const titleText = document.getElementById('home-title').textContent.split('');
+        document.getElementById('home-title').innerHTML = titleText.map(char => `<span style="display: inline-block; opacity: 0;">${char}</span>`).join('');
+
+        gsap.timeline()
+            .to("#home-title span", {
+                opacity: 1,
+                y: 0,
+                duration: 0.1,
+                stagger: 0.05,
+                ease: "power3.out"
+            })
+            .to("#home-subtitle", {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: "power3.out"
+            }, "-=0.5")
+            .to("#home-button", {
+                opacity: 1,
+                scale: 1,
+                duration: 0.8,
+                ease: "elastic.out(1, 0.5)"
+            }, "-=0.5");
+
+        // 平滑滾動
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
